@@ -16,6 +16,7 @@ RUN apt-get -y update \
 #    ;
 ADD https://storage.googleapis.com/kubernetes-release/release/v1.0.3/bin/linux/amd64/kubectl /usr/local/bin
 ADD https://get.docker.com/builds/Linux/x86_64/docker-latest /usr/local/bin
+ADD https://github.com/docker/compose/releases/download/1.6.0-rc1/docker-compose-Linux-x86_64 /usr/local/bin
 COPY FILES.ndsdev /
 RUN echo 'export PS1="[\u@NDSDEV ] \W # "' >> /root/.bashrc
 RUN chmod a+x /usr/local/bin/*
