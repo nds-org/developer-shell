@@ -1,0 +1,5 @@
+#!/bin/bash
+BOOTSTRAP_IMAGE=bootstrap-developer-shell
+
+docker build -f Dockerfile.developer-shell -t ${BOOTSTRAP_IMAGE} . 
+docker run --rm  -v /var/run/docker.sock:/var/run/docker.sock -v `pwd`:/nds/src ${BOOTSTRAP_IMAGE} make

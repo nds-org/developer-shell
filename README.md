@@ -9,6 +9,10 @@ no installation required.
   ** Docker Machine (https://docs.docker.com/machine/)
   ** A provisioned CoreOS instance in NDSLabs (https://coreos.com/)
 
+# Bootstrapping the developer-shell image
+  * The bootstrap script builds a bootstrap developer-image with required tooling, then rebuilds itself within the bootstrap
+  * ./bootstrap
+
 # Usage
   * This image has a volume on /nds/src.  You may map a host path (-v <hostpath>:/nds/src), setup a data container using this image (docker create --name ndssrc ...  && run with --volumes-from ndssrc), or let docker create a volume for your development container for you (no volume args to docker)
   * Print usage information contained in the image "docker run --rm -it ndslabs/developer-shell usage"

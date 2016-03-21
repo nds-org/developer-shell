@@ -13,7 +13,7 @@
 ##############################################################
 #
 # BUILDDIR  - 	storage for all build things and dependency mgmt
-BUILDDIR	:= nds-build
+BUILDDIR	:= _output
 
 ##############################################################
 #
@@ -27,6 +27,7 @@ include $(SELF_DIR)/gmsl
 BUILDFILES		= $(IMAGES:%=Dockerfile.%)
 TIMESTAMPS		= $(IMAGES:%=$(BUILDDIR)/%.d)
 ORG				?= ndslabs
+RELEASE			?= 1.2.0
 
 all: 		$(TIMESTAMPS)
 .PHONY:		all clean realclean ALWAYS
@@ -60,8 +61,8 @@ endif
 
 $(BUILDDIR)/%.d : Dockerfile.% $(DEPS.%)
 	@-docker rmi -f --no-prune $*   # rmi required as docker build does not update the Created metadata on new build - Docker bug
-	docker build --pull $(BUILDARGS.$*:%=--build-arg %) -t $* -f $< .
-	docker tag -f $* $(ORG)/$*:latest
+	docker build --pull $(BUILDARGS.$*:%=--build-arg %) -t $*:$(RELEASE) -f $< .
+	docker tag -f $*:$(RELEASE) $(ORG)/$*:latest
 	@touch $@
 
 
@@ -96,6 +97,7 @@ clean: cleandir
 realclean: clean cleandocker
 cleandir:
 	-rm -rf $(BUILDDIR)
+	-rm -rf nds-build
 cleandocker:
 	@-docker rmi -f $(IMAGES) || true
 
