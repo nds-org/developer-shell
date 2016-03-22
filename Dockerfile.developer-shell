@@ -15,8 +15,7 @@ RUN apt-get -y update \
 #    && chmod a+x `which docker` \
 #    ;
 ADD https://storage.googleapis.com/kubernetes-release/release/v1.2.0/bin/linux/amd64/kubectl /usr/local/bin
-ADD https://get.docker.com/builds/Linux/x86_64/docker-latest /usr/local/bin/docker
-ADD https://github.com/docker/compose/releases/download/1.6.0-rc1/docker-compose-Linux-x86_64 /usr/local/bin/docker-compose
+ADD https://github.com/docker/compose/releases/download/1.6.2/docker-compose-Linux-x86_64 /usr/local/bin/docker-compose
 COPY FILES.developer-shell /
 RUN echo 'export PS1="[\u@developer-shell ] \W # "' >> /root/.bashrc
 RUN chmod a+x /usr/local/bin/*

@@ -5,9 +5,9 @@ no installation required.
 
 # Prerequisites
   * A linux amd64 architecture based Docker environment to run a development container based on this image.
-  ** A Docker 1.9+ system
-  ** Docker Machine (https://docs.docker.com/machine/)
-  ** A provisioned CoreOS instance in NDSLabs (https://coreos.com/)
+  * Docker 1.9+
+  * Docker Machine (https://docs.docker.com/machine/)
+  * A provisioned CoreOS instance in NDSLabs (https://coreos.com/)
 
 # Bootstrapping the developer-shell image
   * The bootstrap script builds a bootstrap developer-image with required tooling, then rebuilds itself within the bootstrap
@@ -16,14 +16,14 @@ no installation required.
 # Usage
   * This image has a volume on /nds/src.  You may map a host path (-v <hostpath>:/nds/src), setup a data container using this image (docker create --name ndssrc ...  && run with --volumes-from ndssrc), or let docker create a volume for your development container for you (no volume args to docker)
   * Print usage information contained in the image "docker run --rm -it ndslabs/developer-shell usage"
-  ** The usage command has arguments to emit a canonical docker run command for various environments
+  * The usage command has arguments to emit a canonical docker run command for various environments
   * The developer shell requires mapping the docker socket: docker run ... -v /var/run/docker/sock:/var/run/docker.sock
   * Check proper setup from within you developer container:  check-setup
 
 # Author Config
   * Please config git with your name and email. Pull requests without author information will be rejected.
-  ** git config --global user.name
-  ** git config --global user.email
+  * git config --global user.name
+  * git config --global user.email
   * Git clone the source code your wish to develop against under /nds/src
 
 # Building
